@@ -10,8 +10,11 @@
 #include <string>
 #include <vector>
 
-std::map<std::string, std::vector<int>> crossLink(std::istream&, std::vector<std::string> searchWords(const std::string&) = wordSeparator);
+bool isASpace(char);
+bool isNotASpace(char);
 std::vector<std::string> wordSeparator(const std::string&);
+std::map<std::string, std::vector<int> > crossLink(std::istream&, std::vector<std::string> searchWords(const std::string&) = wordSeparator);
+
 
 #endif // !AUXFUN_H
 
