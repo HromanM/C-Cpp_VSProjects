@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	cout << "test3" << endl;
+	cout << "test4" << endl;
     return 0;
 }
 
