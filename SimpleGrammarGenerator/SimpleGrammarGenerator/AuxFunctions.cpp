@@ -80,3 +80,70 @@ int randomN(int len)
 
 	return res;
 }
+
+template<class T> bool equal(const T z, const T k, const T z2)
+{
+	while (z != k)
+	{
+		if (!(*z++ == *z2++))
+			return false;
+	}
+	return true;
+}
+
+template<class T, class P> T find(T b, T e, const P& val)
+{
+	while (b != e)
+	{
+		if (*b == *val)
+			return b;
+		++b;
+	}
+	return b;
+}
+
+
+template<class inputT, class outputT> outputT copy(const inputT b, const inputT e, const outputT out)
+{
+	while (b != e)
+		*out++ = *b++;
+	return out;
+}
+
+template<class inputT, class outputT, class predT> outputT transform(const inputT b, const inputT e, outputT out, predT pred)
+{
+	while (b != e)
+	{
+		*out++ = pred(*b++);
+	}
+	return out;
+}
+
+template<class inputT, class T> T accumulate(const inputT b, const inputT e, T init)
+{
+	while (b != e)
+	{
+		init = *b++;
+	}
+	return init;
+}
+
+template<class inputT, class fwdT> inputT search(inputT b, inputT e, inputT b2, inputT e2)
+{
+	fwdT it = b2;
+	inputT ret = b;
+	while (b != e)
+	{
+		if (*b++ == *it++)
+		{
+			if (it == e2)
+				return ret;
+		}
+		else
+		{
+			it = b2;
+			ret = b;
+		}
+	}
+	return e;
+}
