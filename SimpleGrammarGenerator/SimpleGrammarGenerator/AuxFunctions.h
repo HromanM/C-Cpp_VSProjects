@@ -21,5 +21,7 @@ std::istream&, std::vector<std::string> searchWords(const std::string&) = wordSe
 // random number generator
 int randomN(int);
 
+
+
 #endif // !AUXFUN_H
 
