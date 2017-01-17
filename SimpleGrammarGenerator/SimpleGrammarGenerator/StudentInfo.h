@@ -20,3 +20,4 @@ class StudentInfo {
 double markSt(double, double, std::vector<double>);
 std::istream& readHw(std::istream&, std::vector<double> &);
 bool compareSt(const StudentInfo&, const StudentInfo&);
+std::string markChar(double);

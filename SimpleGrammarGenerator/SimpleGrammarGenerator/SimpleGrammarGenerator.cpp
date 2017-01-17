@@ -30,10 +30,13 @@ void mainFc()
 {
 	ClassRoom cr("4.A", "17A");
 	StudentInfo st;
-	for (int i = 0; i <= 2; ++i) 
+	while(1)
 	{
 		st.readSt(cin);
 		cr.addStudent(st);
+		cout << "Student pridan" << endl;
+		if (!cin)
+			break;
 	}
 	cr.writeClassR(cout);
 }

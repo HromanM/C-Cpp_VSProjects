@@ -34,7 +34,7 @@ ostream& ClassRoom::writeClassR(ostream& os)
 		os << "Studenti - Vysledky:" << this->students.size() << endl;
 		for each(StudentInfo st in this->students)
 		{
-			os << st.name() << " Body: " << st.mark() << " Vysledek: " << st.finalSt() << endl;
+			os << st.name() << " Body: " << st.mark() << " Znamka: " << markChar(st.mark()) << " Vysledek: " << st.finalSt() << endl;
 		}
 	}
 	return os;

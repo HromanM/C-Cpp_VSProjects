@@ -40,7 +40,7 @@ double markSt(double half, double exam, vector<double> hw)
 		throw invalid_argument("homework is empty");
 	for each (double d in hw)
 		homew += d;
-	return 0.4*half + 0.4*exam + homew / hw.size();
+	return half + exam + homew / hw.size();
 }
 
 istream& readHw(istream& is, vector<double> & hw)
@@ -54,4 +54,23 @@ istream& readHw(istream& is, vector<double> & hw)
 bool compareSt(const StudentInfo& x, const StudentInfo& y)
 {
 	return x.name() < y.name();
+}
+
+string markChar(double mark)
+{
+	static const double numValues[] = {
+		97, 94, 90, 87, 84, 80, 77, 74, 70, 60, 0 };
+
+	static const char* const cMarks[] = {
+		"A+", "A", "A-","B+", "B", "B-","C+", "C", "C-","D", "F"
+	};
+
+	static const size_t valCount = sizeof(numValues) / sizeof(*numValues);
+
+	for (size_t i = 0; i < valCount; ++i)
+	{
+		if (mark >= numValues[i])
+			return cMarks[i];
+	}
+	return "?/?/?";
 }
