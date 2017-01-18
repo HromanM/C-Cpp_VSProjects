@@ -28,7 +28,9 @@ public:
 
 	//functions
 	size_type size() const { return avail - data; }
-	void clear() { destroyVec(); }
+	void clear();
+	iterator erase(iterator);
+	iterator erase(iterator, iterator);
 	bool empty() const { return data == volny; }
 	void push_back(const T& t)
 	{
@@ -36,6 +38,7 @@ public:
 			spreadVecDataSpace();
 		uncontrolledAdd(t);
 	}
+	void pop_back();
 
 private:
 	iterator data;		// pointer to first data element

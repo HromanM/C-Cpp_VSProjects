@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Vec.h"
 #include <memory>
+#include <stdexcept>
 
 template<class T> Vec<T>& Vec<T>::operator=(const Vec& pso)
 {
@@ -60,3 +61,63 @@ template<class T> void Vec<T>::uncontrolledAdd(const T& t)
 {
 	alloc.construct(avail++, t);
 }
+/*
+template<class T> void Vec<T>::pop_back()
+{
+	if ((data != avail) && data)
+	{
+		iterator it = --avail;
+		alloc.destroy(it);
+		--avail;
+	}
+}
+*/
+/*template<class T> void Vec<T>::clear()
+{
+	iterator it = avail;
+	while ((it != data) && data)
+	{
+		alloc.destroy(--it);
+	}
+	avail = data;
+}
+*/
+/*template<class T> iterator Vec<T>::erase(iterator it)
+{
+	if (it >= data && it < avail)
+	{
+		iterator iter = it;
+		alloc.destroy(iter);
+		iterator newAvail = std::uninitialized_copy(it+1, avail, it);
+		alloc.destroy(--avail);
+		return it;
+	}
+	else if (avail == data)
+	{
+		throw std::invalid_argument("erase Vec parameter out of range");
+	}
+	else
+		throw std::invalid_argument("erase Vec - empty Vec");
+}
+
+template<class T> iterator Vec<T>::erase(iterator b, iterator e)
+{
+	if (b >= data && b < avail)
+	{
+		iterator it = b;
+		while (it != e && it != avail)
+		{
+			alloc.destroy(++it);
+		}
+		iterator newAvail = std::uninitialized_copy(it, avail, b);
+		while (avail != newAvail)
+			alloc.destroy(--avail);
+		return b;
+	}
+	else if (avail == data)
+	{
+		throw std::invalid_argument("erase Vec parameter out of range");
+	}
+	else
+		throw std::invalid_argument("erase Vec - empty Vec");
+}*/

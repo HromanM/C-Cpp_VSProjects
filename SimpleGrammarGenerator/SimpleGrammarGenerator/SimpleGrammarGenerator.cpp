@@ -9,15 +9,19 @@
 #include <stdexcept>
 #include "StudentInfo.h"
 #include "ClassRoom.h"
+#include "Vec.h"
 
 using namespace std;
 void mainFc();
+void VecMainFc();
+void studentInfoMainFc();
 
 int main()
 {
 	try {
 		//grammarGen();
-		mainFc();
+		//studentInfoMainFc();
+		VecMainFc();
 	}
 	catch (exception ex)
 	{
@@ -26,11 +30,19 @@ int main()
     return 0;
 }
 
-void mainFc()
+void VecMainFc()
+{
+	Vec<int> vec1;
+	//Vec<int> vec1;
+	//Vec<int> vec2(5, 5);
+	//Vec<int> vec3 = vec2;
+}
+
+void studentInfoMainFc()
 {
 	ClassRoom cr("4.A", "17A");
 	StudentInfo st;
-	while(1)
+	while (1)
 	{
 		st.readSt(cin);
 		cr.addStudent(st);
@@ -59,3 +71,4 @@ void grammarGen()
 	}
 	cout << endl;
 }
+
