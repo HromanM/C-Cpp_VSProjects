@@ -10,6 +10,7 @@
 #include "StudentInfo.h"
 #include "ClassRoom.h"
 #include "Vec.h"
+#include "Vec.cpp"
 
 using namespace std;
 void mainFc();
@@ -33,9 +34,20 @@ int main()
 void VecMainFc()
 {
 	Vec<int> vec1;
-	//Vec<int> vec1;
-	//Vec<int> vec2(5, 5);
-	//Vec<int> vec3 = vec2;
+	Vec<int> vec2(5, 2);
+	vec1.push_back(1);
+	vec1.push_back(2);
+	vec1.push_back(3);
+	vec1.push_back(4);
+	vec1.push_back(5);
+	cout << "Size: " << vec1.size() <<  "prvek[max]: " << vec1[vec1.size() - 1] << endl;
+	vec1.pop_back();
+	cout << "Size: " << vec1.size() << "prvek[max]: " << vec1[vec1.size() - 1] << endl;
+	Vec<int> vec3 = vec1;
+	cout << "Size: " << vec3.size() << "prvek[max]: " << vec3[vec3.size() - 1] << endl;
+	vec3.clear();
+	cout << "Size: " << vec3.size() << "prvek[max]: " << vec3[vec3.size() - 1] << endl;
+
 }
 
 void studentInfoMainFc()

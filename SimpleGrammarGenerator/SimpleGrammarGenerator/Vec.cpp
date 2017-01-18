@@ -3,6 +3,8 @@
 #include <memory>
 #include <stdexcept>
 
+#pragma warning(disable:4996)  
+
 template<class T> Vec<T>& Vec<T>::operator=(const Vec& pso)
 {
 	if (&pso != this)
@@ -21,21 +23,21 @@ template<class T> void Vec<T>::constructVec()
 template<class T> void Vec<T>::constructVec(size_type n, const T& t)
 {
 	data = alloc.allocate(n);
-	limit = volny = data + n;
-	std::uninitialized_fill(data, volny, t);
+	limit = avail = data + n;
+	std::uninitialized_fill(data, avail, t);
 }
 
 template<class T> void Vec<T>::constructVec(const_iterator b, const_iterator e)
 {
 	data = alloc.allocate(e - b);
-	limit = volny = std::uninitialized_copy(b, e, data);
+	limit = avail = std::uninitialized_copy(b, e, data);
 }
 
 template<class T> void Vec<T>::destroyVec()
 {
 	if (data)
 	{
-		iterator it = volny;
+		iterator it = avail;
 		while (it != data)
 			alloc.destroy(--it);
 		alloc.deallocate(data, limit - data);
@@ -45,7 +47,7 @@ template<class T> void Vec<T>::destroyVec()
 
 template<class T> void Vec<T>::spreadVecDataSpace()
 {
-	size_type newSize = (limit - data) * 2;
+	size_type newSize = ((limit - data) + 1) * 2;
 
 	iterator newData = alloc.allocate(newSize);
 	iterator newAvail = std::uninitialized_copy(data, avail, newData);
@@ -61,18 +63,18 @@ template<class T> void Vec<T>::uncontrolledAdd(const T& t)
 {
 	alloc.construct(avail++, t);
 }
-/*
+
 template<class T> void Vec<T>::pop_back()
 {
 	if ((data != avail) && data)
 	{
-		iterator it = --avail;
-		alloc.destroy(it);
-		--avail;
+		iterator it = avail;
+		alloc.destroy(--it);
+		avail--;
 	}
 }
-*/
-/*template<class T> void Vec<T>::clear()
+
+template<class T> void Vec<T>::clear()
 {
 	iterator it = avail;
 	while ((it != data) && data)
@@ -81,7 +83,7 @@ template<class T> void Vec<T>::pop_back()
 	}
 	avail = data;
 }
-*/
+
 /*template<class T> iterator Vec<T>::erase(iterator it)
 {
 	if (it >= data && it < avail)
