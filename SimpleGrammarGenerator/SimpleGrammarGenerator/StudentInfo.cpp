@@ -45,9 +45,15 @@ double markSt(double half, double exam, vector<double> hw)
 
 istream& readHw(istream& is, vector<double> & hw)
 {
-	double d;
-	while (is >> d)
-		hw.push_back(d);
+	if (is)
+	{
+		hw.clear();
+
+		double d;
+		while (is >> d)
+			hw.push_back(d);
+		is.clear();
+	}
 	return is;
 }
 

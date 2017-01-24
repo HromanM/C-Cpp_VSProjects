@@ -45,6 +45,12 @@
     <ClInclude Include="Dedicnost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StudentOper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dedicnost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentOper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

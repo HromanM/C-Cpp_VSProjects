@@ -151,6 +151,8 @@
     <ClInclude Include="ClassRoom.h" />
     <ClInclude Include="Dedicnost.h" />
     <ClInclude Include="Grammar.h" />
+    <ClInclude Include="ServiceClass.h" />
+    <ClInclude Include="StudentOper.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Str.h" />
     <ClInclude Include="StudentInfo.h" />
@@ -162,6 +164,7 @@
     <ClCompile Include="ClassRoom.cpp" />
     <ClCompile Include="Dedicnost.cpp" />
     <ClCompile Include="Grammar.cpp" />
+    <ClCompile Include="ServiceClass.cpp" />
     <ClCompile Include="SimpleGrammarGenerator.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -171,6 +174,7 @@
     </ClCompile>
     <ClCompile Include="Str.cpp" />
     <ClCompile Include="StudentInfo.cpp" />
+    <ClCompile Include="StudentOper.cpp" />
     <ClCompile Include="Vec.cpp" />
   </ItemGroup>
   <ItemGroup>

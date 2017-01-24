@@ -37,3 +37,13 @@ double CertSt::mark() const
 {
 	return min(BasicSt::mark(), project);
 }
+
+bool compareStudent(const BasicSt& a, const BasicSt& b)
+{
+	return a.retName() < b.retName();
+}
+
+bool compareStudentPtr(const BasicSt* a, const BasicSt* b)
+{
+	return compareStudent(*a, *b);
+}

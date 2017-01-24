@@ -7,28 +7,77 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include <algorithm>
+#include <iomanip>
 #include "StudentInfo.h"
 #include "ClassRoom.h"
 #include "Vec.h"
 #include "Vec.cpp"
+#include "Dedicnost.h"
+#include "StudentOper.h"
 
 using namespace std;
 void mainFc();
 void VecMainFc();
 void studentInfoMainFc();
+void DedMainFc();
 
 int main()
 {
 	try {
 		//grammarGen();
 		//studentInfoMainFc();
-		VecMainFc();
+		//VeccMainFc();
+		DedMainFc();
 	}
 	catch (exception ex)
 	{
 		cout << ex.what();
 	}
-    return 0;
+	return 0;
+}
+
+void DedMainFc()
+{
+	vector<StudentOper> students;
+	StudentOper item;
+	string::size_type maxLen = 0;
+	/*while (item.readStOper(cin))
+	{
+		maxLen = max(maxLen, item.name().size());
+		students.push_back(item);
+	}
+	sort(students.begin(), students.end(), StudentOper::compareStOper);
+	
+	for (vector<StudentOper>::size_type i = 0; i != students.size(); ++i)
+	{
+		cout << students[i].name()
+			<< string(maxLen + 1 - students[i].name().size(), ' ');
+		try {
+			double finalMark = students[i].mark();
+			streamsize presnost = cout.precision();
+			cout << setprecision(3) << finalMark
+				<< setprecision(presnost) << endl;
+		}
+		catch (domain_error e) {
+			cout << e.what() << endl;
+		}
+	}*/
+
+	BasicSt * p1 = new BasicSt;
+	BasicSt *p2 = new CertSt;
+	BasicSt s1;
+	CertSt s2;
+	p1->mark();
+	p1->retName();
+
+	p2->mark();
+	p2->retName();
+	s1.mark();
+	s1.retName();
+
+	s2.mark();
+	s2.retName();
 }
 
 void VecMainFc()
