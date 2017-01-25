@@ -18,7 +18,7 @@ private:
 	T* ptr;
 };
 
-/*
+
 template <class T> class RefService
 {
 public:
@@ -28,7 +28,7 @@ public:
 		++*refPtr;
 	}
 
-	/*RefService& operator=(const RefSerice&);
+	RefService& operator=(const RefService&);
 	~RefService();
 
 	operator bool() const { return ptr; }
@@ -46,4 +46,4 @@ public:
 private:
 	std::size_t* refPtr;
 	T* ptr;
-};*/
+};

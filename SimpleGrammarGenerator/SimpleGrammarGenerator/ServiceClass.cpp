@@ -31,9 +31,10 @@ template <class T>
 	 throw runtime_error("non valid ServiceSlass pointer");
  }
 
- /*template <class T> 
+ template <class T> 
  RefService<T>& RefService<T>::operator=(const RefService& pso)
  {
 	 ++*pso.refPtr;
+
 	 return *this;
- }*/
+ }
