@@ -10,7 +10,7 @@ ServiceClass<T>& ServiceClass<T>::operator=(const ServiceClass& s)
 	if (&s != this)
 	{
 		delete ptr;
-		ptr = s.ptr ? s.ptr->cloneSt() : 0;
+		ptr = s.ptr ? s.ptr->clone() : 0;
 	}
 	return *this;
 }
@@ -35,6 +35,21 @@ template <class T>
  RefService<T>& RefService<T>::operator=(const RefService& pso)
  {
 	 ++*pso.refPtr;
-
+	 if (--*ptr == 0)
+	 {
+		 delete refPtr;
+		 delete ptr;
+	 }
+	 refPtr = pso.refPtr;
+	 ptr = pso.ptr;
 	 return *this;
+ }
+
+ template <class T> RefService<T>::~RefService()
+ {
+	 if (--*refPtr == 0)
+	 {
+		 delete refPtr;
+		 delete ptr;
+	 }
  }

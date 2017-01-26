@@ -16,7 +16,7 @@ ostream& operator<<(ostream& os, const Str& str)
 
 istream& operator>> (istream& is, Str& s)
 {
-	s.data.clear();
+	s.data->clear();
 	
 	char c;
 	while (is.get(c) && isspace(c))
@@ -25,7 +25,7 @@ istream& operator>> (istream& is, Str& s)
 	if (is)
 	{
 		do 
-			s.data.push_back(c);
+			s.data->push_back(c);
 		while (is.get(c) && !isspace(c));
 
 		if (is)
@@ -36,7 +36,8 @@ istream& operator>> (istream& is, Str& s)
 
 Str& Str::operator+=(const Str& st)
 {
-	std::copy(st.data.begin(), st.data.end(), std::back_inserter(data));
+	data.createUniq();
+	std::copy(st.data->begin(), st.data->end(), std::back_inserter(*data));
 	return *this;
 }
 

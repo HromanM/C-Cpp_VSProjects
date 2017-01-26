@@ -84,6 +84,7 @@ template<class T> void Vec<T>::clear()
 	avail = data;
 }
 
+
 /*template<class T> iterator Vec<T>::erase(iterator it)
 {
 	if (it >= data && it < avail)

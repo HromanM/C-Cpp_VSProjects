@@ -20,7 +20,7 @@ protected:
 	std::istream& readStComm(std::istream&);
 	double half, exam;
 	std::vector<double> homeworks;
-	virtual BasicSt* cloneSt() const { return new BasicSt(*this); }
+	virtual BasicSt* clone() const { return new BasicSt(*this); }
 private:
 	std::string name;
 };
@@ -35,7 +35,7 @@ public:
 	std::istream& readSt(std::istream&);
 	void newMark(double d) { exam = exam + 10000; }
 protected:
-	virtual CertSt* cloneSt() const { return new CertSt(*this); }
+	virtual CertSt* clone() const { return new CertSt(*this); }
 private:
 	double project;
 };

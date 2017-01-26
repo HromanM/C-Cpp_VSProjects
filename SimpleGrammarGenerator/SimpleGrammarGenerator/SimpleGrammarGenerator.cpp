@@ -15,6 +15,7 @@
 #include "Vec.cpp"
 #include "Dedicnost.h"
 #include "StudentOper.h"
+#include "Picture.h"
 
 using namespace std;
 void mainFc();
