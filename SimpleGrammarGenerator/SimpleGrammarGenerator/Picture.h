@@ -7,12 +7,11 @@
 class BasePic {
 	typedef std::vector<std::string>::size_type vec_size;
 	typedef std::string::size_type str_size;
-
+public:
 	virtual vec_size height() const = 0;
 	virtual str_size width() const = 0;
 	virtual void display(std::ostream&, vec_size, bool) const = 0;
 
-public:
 	virtual ~BasePic() {}
 };
 
@@ -20,6 +19,7 @@ public:
 * class frame picture
 *****************************************************************************/
 class FramePic: public BasePic {
+	friend Picture frame(const Picture&);
 	Ptr<BasePic> ptr;
 	FramePic(const Ptr<BasePic>& pic): ptr(pic) {}
 
@@ -29,7 +29,7 @@ class FramePic: public BasePic {
 };
 
 /*****************************************************************************
-* class frame picture
+* class Vertical connection picture
 *****************************************************************************/
 class VConnPic : public BasePic {
 	Ptr<BasePic> upper, lower;
@@ -69,10 +69,18 @@ class StringPic : public BasePic {
 class Picture {
 public:
 	Picture(const std::vector<std::string>& = std::vector<std::string>());
-	Picture frame(const Picture&);
-	Picture hConn(const Picture&, const Picture&);
-	Picture vConn(const Picture&, const Picture&);
-	std::ostream operator<<(std::ostream&, const Picture&);
 private:
-	Ptr<BasePic> p;
+	Picture(BasePic* p): ptr(p) {}
+	Ptr<BasePic> ptr;
 };
+
+/***************************************************************************
+* aux Picture interface fc 
+***************************************************************************/
+Picture frame(const Picture& pic)
+{
+	BasePic* bp = new FramePic(pic.ptr);
+}
+Picture hConn(const Picture&, const Picture&);
+Picture vConn(const Picture&, const Picture&);
+std::ostream operator<<(std::ostream&, const Picture&);
