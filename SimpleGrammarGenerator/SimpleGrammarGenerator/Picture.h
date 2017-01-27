@@ -1,5 +1,41 @@
 #pragma once
 #include "Ptr.h"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+
+class Picture;
+class BasePic;
+class StringPic;
+class FramePic;
+class VConnPic;
+class HConnPic;
+
+/***************************************************************************
+* Picture interface
+***************************************************************************/
+class Picture {
+public:
+	Picture(const std::vector<std::string>& = std::vector<std::string>());
+private:
+	Picture(BasePic* p) : ptr(p) {}
+	Ptr<BasePic> ptr;
+
+	friend class BasePic;
+	friend class FramePic;
+	friend class StringPic;
+	friend class HConnPic;
+	friend class VConnPic;
+};
+
+/***************************************************************************
+* aux Picture interface fc
+***************************************************************************/
+Picture frame(const Picture&);
+Picture hConn(const Picture&, const Picture&);
+Picture vConn(const Picture&, const Picture&);
+std::ostream operator<<(std::ostream&, const Picture&);
 
 /*****************************************************************************
 * class base pic
@@ -13,19 +49,25 @@ public:
 	virtual void display(std::ostream&, vec_size, bool) const = 0;
 
 	virtual ~BasePic() {}
+
+	friend class FramePic;
+	friend class StringPic;
+	friend class HConnPic;
+	friend class VConnPic;
+	friend std::ostream operator<<(std::ostream&, const Picture&);
 };
 
 /*****************************************************************************
 * class frame picture
 *****************************************************************************/
 class FramePic: public BasePic {
-	friend Picture frame(const Picture&);
 	Ptr<BasePic> ptr;
 	FramePic(const Ptr<BasePic>& pic): ptr(pic) {}
 
 	vec_size height() const { return ptr->height() + 4; }
 	str_size width() const { return ptr->width() + 4; }
 	void display(std::ostream&, vec_size, bool) const;
+	friend Picture frame(const Picture&);
 };
 
 /*****************************************************************************
@@ -39,6 +81,7 @@ class VConnPic : public BasePic {
 	vec_size height() const { return upper->height() + lower->height(); }
 	str_size width() const { return upper->width() + lower->width(); }
 	void display(std::ostream&, vec_size, bool) const;
+	friend Picture vConn(const Picture&, const Picture&);
 };
 
 /*****************************************************************************
@@ -49,9 +92,10 @@ class HConnPic : public BasePic {
 	HConnPic(const Ptr<BasePic>& l, const Ptr<BasePic>& r) :
 		left(l), right(r) {}
 
-	vec_size height() const { return max(left->height(), right->height()); }
+	vec_size height() const { return std::max(left->height(), right->height()); }
 	str_size width() const { return left->width() + right->width(); }
 	void display(std::ostream&, vec_size, bool) const;
+	friend Picture hConn(const Picture&, const Picture&);
 };
 
 /*****************************************************************************
@@ -64,23 +108,7 @@ class StringPic : public BasePic {
 	vec_size height() const;
 	str_size width() const;
 	void display(std::ostream&, vec_size, bool) const;
+
+	friend class Picture;
 };
 
-class Picture {
-public:
-	Picture(const std::vector<std::string>& = std::vector<std::string>());
-private:
-	Picture(BasePic* p): ptr(p) {}
-	Ptr<BasePic> ptr;
-};
-
-/***************************************************************************
-* aux Picture interface fc 
-***************************************************************************/
-Picture frame(const Picture& pic)
-{
-	BasePic* bp = new FramePic(pic.ptr);
-}
-Picture hConn(const Picture&, const Picture&);
-Picture vConn(const Picture&, const Picture&);
-std::ostream operator<<(std::ostream&, const Picture&);

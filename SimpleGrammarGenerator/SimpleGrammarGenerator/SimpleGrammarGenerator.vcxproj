@@ -166,6 +166,7 @@
     <ClCompile Include="ClassRoom.cpp" />
     <ClCompile Include="Dedicnost.cpp" />
     <ClCompile Include="Grammar.cpp" />
+    <ClCompile Include="Picture.cpp" />
     <ClCompile Include="Ptr.cpp" />
     <ClCompile Include="ServiceClass.cpp" />
     <ClCompile Include="SimpleGrammarGenerator.cpp" />
